@@ -1,18 +1,49 @@
 using Aspire.Hosting;
+using Aspire.Hosting.ApplicationModel;
 
-var builder = DistributedApplication.CreateBuilder(args);
+namespace Moser.Solutions.Blueprint.AppHost;
 
-var cache = builder.AddRedis("cache");
+public static class Program
+{
+    public const string PostgresContainerName = "platform-postgres-container";
+    public const string PostgresDbName = "postgres-db";
 
-var exampleApi = builder.AddProject<Projects.Example_API>("example-api");
+    static void Main(string[] args)
+    {
+        var builder = DistributedApplication.CreateBuilder(args);
 
-var catalogApi = builder.AddProject<Projects.Catalog_API>("catalog-api");
+        var cache = builder.AddRedis("cache");
 
-builder.AddProject<Projects.Web>("webfrontend")
-    .WithExternalHttpEndpoints()
-    .WithReference(cache)
-    .WaitFor(cache)
-    .WithReference(catalogApi)
-    .WaitFor(catalogApi);
+        var exampleApi = builder.AddProject<Projects.Example_API>("example-api");
 
-builder.Build().Run();
+        var catalogApi = builder.AddProject<Projects.Catalog_API>("catalog-api");
+
+        builder.AddProject<Projects.Web>("webfrontend")
+            .WithExternalHttpEndpoints()
+            .WithReference(cache)
+            .WaitFor(cache)
+            .WithReference(catalogApi)
+            .WaitFor(catalogApi);
+
+        var app = builder.Build();
+
+        app.Run();
+    }
+
+    public static IResourceBuilder<PostgresServerResource> AddPostgresContainer(IDistributedApplicationBuilder builder, bool includePostgresAdministrationPlatform = false)
+    {
+        var postgresServerBuilder = builder.AddPostgres(PostgresContainerName);
+
+        if (includePostgresAdministrationPlatform)
+        {
+            postgresServerBuilder.WithPgAdmin();
+        }
+
+        return postgresServerBuilder;
+    }
+
+    public static IResourceBuilder<PostgresDatabaseResource> AddPostgresDb(IResourceBuilder<PostgresServerResource> postgresContainer)
+    {
+        return postgresContainer.AddDatabase(PostgresDbName, PostgresDbContext.DbName);
+    }
+}

@@ -16,10 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="IntegrationTests\API\" />
-    <Folder Include="IntegrationTests\Infrastructure\" />
-    <Folder Include="UnitTests\Domain\" />
-    <Folder Include="UnitTests\Application\" />
+    <Folder Include="Integration\API\" />
+    <Folder Include="Integration\Infrastructure\" />
+    <Folder Include="Unit\Domain\" />
+    <Folder Include="Unit\Application\" />
+    <Folder Include="Unit\Infrastructure\" />
   </ItemGroup>
 
 </Project>

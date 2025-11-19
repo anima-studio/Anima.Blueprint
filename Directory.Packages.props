@@ -1,15 +1,12 @@
 <Project>
-
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <RestorePackagesWithLockFile>false</RestorePackagesWithLockFile>
   </PropertyGroup>
-  
   <ItemGroup Label="">
     <!-- <PackageVersion Include="Nuget.Package.Name" Version="0.0.0" /> -->
-      <!-- => in .csproj: <PackageReference Include="Nuget.Package.Name" /> -->
+    <!-- => in .csproj: <PackageReference Include="Nuget.Package.Name" /> -->
   </ItemGroup>
-
   <ItemGroup Label="Tests">
     <PackageVersion Include="Aspire.Hosting.Testing" Version="13.0.0" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
@@ -17,11 +14,9 @@
     <PackageVersion Include="xunit" Version="2.9.3" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5" />
   </ItemGroup>
-
   <ItemGroup Label="Catalog.API">
     <PackageVersion Include="Microsoft.Identity.Web.UI" Version="3.8.1" />
   </ItemGroup>
-
   <ItemGroup Label="Example.API">
     <PackageVersion Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.23.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.0" />
@@ -31,19 +26,15 @@
     <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="10.0.1" />
   </ItemGroup>
-
   <ItemGroup Label="Example.Application">
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0" />
   </ItemGroup>
-
   <ItemGroup Label="Example.Infrastructure">
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.0" />
   </ItemGroup>
-
   <ItemGroup Label="Web">
     <PackageVersion Include="Aspire.StackExchange.Redis.OutputCaching" Version="13.0.0" />
   </ItemGroup>
-
   <ItemGroup Label="ServiceDefaults">
     <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.0.0" />
     <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.0.0" />
@@ -53,10 +44,9 @@
     <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.9.0" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.14.0" />
   </ItemGroup>
-
   <ItemGroup Label="AppHost">
     <PackageVersion Include="Aspire.Hosting.AppHost" Version="13.0.0" />
+    <PackageVersion Include="Aspire.Hosting.Azure.PostgreSQL" Version="13.0.0" />
     <PackageVersion Include="Aspire.Hosting.Redis" Version="13.0.0" />
   </ItemGroup>
-  
 </Project>

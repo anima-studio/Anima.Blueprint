@@ -22,6 +22,7 @@
   <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('.Tests'))">
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <RootNamespace>Moser.Solutions.Blueprint</RootNamespace>
   </PropertyGroup>
 
 </Project>
