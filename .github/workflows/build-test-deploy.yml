@@ -46,7 +46,7 @@ jobs:
     
     strategy:
       matrix:
-        service: [Catalog, Identity, Ordering, Payment]
+        service: [Catalog]
     
     steps:
       - name: Checkout source
@@ -70,7 +70,7 @@ jobs:
             --build-arg SERVICE_NAME=${{ matrix.service }} \
             -t ghcr.io/${{ env.IMAGE_PREFIX }}/${SERVICE_LOWER}-api:${{ github.sha }} \
             -t ghcr.io/${{ env.IMAGE_PREFIX }}/${SERVICE_LOWER}-api:latest \
-            -f src/Services/${{ matrix.service }}/${{ matrix.service }}.API/Dockerfile \
+            -f src/Microservices/${{ matrix.service }}/${{ matrix.service }}.API/Dockerfile \
             .
           
           echo "Pushing ${SERVICE_LOWER}-api..."
@@ -83,7 +83,7 @@ jobs:
     
     strategy:
       matrix:
-        service: [Catalog, Identity, Ordering, Payment]
+        service: [Catalog]
     
     steps:
       - name: Login to Azure
@@ -116,7 +116,7 @@ jobs:
               --target-port 8080 \
               --ingress external \
               --min-replicas 0 \
-              --max-replicas 3 \
+              --max-replicas 1 \
               --cpu 0.25 \
               --memory 0.5Gi \
               --registry-server ghcr.io \
