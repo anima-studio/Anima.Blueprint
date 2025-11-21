@@ -9,13 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\templates\Microservices\Example\Example.API\Example.API.csproj" />
     <ProjectReference Include="..\..\Microservices\Catalog\Catalog.API\Catalog.API.csproj" />
     <ProjectReference Include="..\..\Web\Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Microservices\Catalog\Catalog.Infrastructure\Catalog.Infrastructure.csproj" IsAspireProjectResource="false"/>
+    <ProjectReference Include="..\..\Microservices\Catalog\Catalog.Infrastructure\Catalog.Infrastructure.csproj" IsAspireProjectResource="false" />
   </ItemGroup>
 
   <ItemGroup>
