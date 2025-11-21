@@ -30,4 +30,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ARG SERVICE_NAME=Catalog
-ENTRYPOINT dotnet "${SERVICE_NAME}.API.dll"
+ENTRYPOINT ["dotnet", "${SERVICE_NAME}.API.dll"]

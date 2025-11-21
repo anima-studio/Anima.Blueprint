@@ -57,7 +57,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GH_CONTAINER_REGISTRY_TOKEN }}
+          password: ${{ secrets.GHCR_TOKEN }}
       
       - name: Build and Push Docker Image
         run: |
@@ -100,6 +100,14 @@ jobs:
               &>/dev/null; then
             
             echo "🔄 Updating ${SERVICE_LOWER}-api..."
+
+            az containerapp registry set \
+            --name ${SERVICE_LOWER}-api \
+            --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
+            --server ghcr.io \
+            --username ${{ github.actor }} \
+            --password ${{ secrets.GHCR_TOKEN }}
+
             az containerapp update \
               --name ${SERVICE_LOWER}-api \
               --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
@@ -120,7 +128,7 @@ jobs:
               --memory 0.5Gi \
               --registry-server ghcr.io \
               --registry-username ${{ github.actor }} \
-              --registry-password ${{ secrets.GH_CONTAINER_REGISTRY_TOKEN }}
+              --registry-password ${{ secrets.GHCR_TOKEN }}
           fi
       
       - name: Get Application URL
