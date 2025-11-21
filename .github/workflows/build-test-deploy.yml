@@ -57,7 +57,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GH_CONTAINER_REGISTRY_TOKEN }}
       
       - name: Build and Push Docker Image
         run: |
@@ -120,7 +120,7 @@ jobs:
               --memory 0.5Gi \
               --registry-server ghcr.io \
               --registry-username ${{ github.actor }} \
-              --registry-password ${{ secrets.GITHUB_TOKEN }}
+              --registry-password ${{ secrets.GH_CONTAINER_REGISTRY_TOKEN }}
           fi
       
       - name: Get Application URL
