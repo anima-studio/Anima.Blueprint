@@ -25,28 +25,21 @@ public class DistributedAppTestFixture : IAsyncLifetime
     public HttpClient? HttpClient { get; private set; }
     public JsonSerializerOptions? JsonSerializerOptions { get; private set; }
 
-    public HttpClient? _httpClient { get; private set; }
-
     public async Task InitializeAsync()
     {
-        var distributedApplicationTestingBuilder = await DistributedApplicationTestingBuilder
+        var distributedAppTestBuilder = await DistributedApplicationTestingBuilder
             .CreateAsync<Projects.AppHost>();
 
-        var isCI = true; // Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") == "CI";
-        distributedApplicationTestingBuilder.Services.Configure<DistributedApplicationOptions>(options =>
+        distributedAppTestBuilder.Services.Configure<DistributedApplicationOptions>(options =>
         {
-            if (isCI)
-            {
-                options.DisableDashboard = true;
-            }
+            options.DisableDashboard = true;
         });
-
 
         //Resources = distributedApplicationTestingBuilder.Resources
         //    .Remove(r => r.Name == AppHost.Program.DeviceRegistryApiName)
         //    .Remove(r => r.Name == AppHost.Program.CommunicationServiceApiName);
 
-        _distributedApp = await distributedApplicationTestingBuilder.BuildAsync();
+        _distributedApp = await distributedAppTestBuilder.BuildAsync();
 
         ResourceNotificationService = _distributedApp.Services.GetRequiredService<ResourceNotificationService>();
 
@@ -66,9 +59,6 @@ public class DistributedAppTestFixture : IAsyncLifetime
         };
 
         //?Client = new ?ApiClient(this);
-
-        var endpoint = _distributedApp.GetEndpoint("webfrontend", "http");
-        _httpClient = new HttpClient { BaseAddress = endpoint };
     }
 
     private HttpClient BuildCertBypassHttpClient()
