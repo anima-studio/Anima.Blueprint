@@ -9,6 +9,9 @@ ARG BUILD_CONFIGURATION=Release
 ARG SERVICE_NAME=Catalog
 WORKDIR /src
 
+COPY ["Directory.Build.props", "./"]
+COPY ["Directory.Packages.props", "./"]
+
 COPY ["src/Orchestration/ServiceDefaults/ServiceDefaults.csproj", "src/Orchestration/ServiceDefaults/"]
 COPY ["src/Microservices/${SERVICE_NAME}/${SERVICE_NAME}.API/${SERVICE_NAME}.API.csproj", "src/Microservices/${SERVICE_NAME}/${SERVICE_NAME}.API/"]
 
