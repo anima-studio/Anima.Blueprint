@@ -19,7 +19,16 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddHttpClient<CatalogApiClient>(client =>
 {
-    client.BaseAddress = new Uri("https+http://catalog-api");
+    var catalogApiUrl = builder.Configuration["CatalogApi:BaseUrl"];
+
+    if (!string.IsNullOrEmpty(catalogApiUrl))
+    {
+        client.BaseAddress = new Uri(catalogApiUrl);
+    }
+    else
+    {
+        client.BaseAddress = new Uri("https+http://catalog-api");
+    }
 });
 
 var app = builder.Build();
