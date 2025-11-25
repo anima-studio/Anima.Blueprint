@@ -1,5 +1,8 @@
 using Anima.Blueprint.Components;
 using Anima.Blueprint.Web;
+using Anima.Blueprint.Web.Abstractions;
+using Anima.Blueprint.Web.Hubs;
+using Anima.Blueprint.Web.Services;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,21 +34,33 @@ builder.Services.AddHttpClient<CatalogApiClient>(client =>
     }
 });
 
+builder.Services.AddSingleton<IRemoteAccessTransport, DemoTransport>();
+
+/*builder.Services.AddSignalR()
+    .AddAzureSignalR(options =>
+    {
+        options.ConnectionString = builder.Configuration["Azure:SignalR:ConnectionString"];
+    });*/
+
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error", createScopeForErrors: true);
+    app.UseExceptionHandler("/Error"); //, createScopeForErrors: true);
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 
+//app.MapHub<AgentsHub>("/hubs/agents");
+//app.MapHub<AdminHub>("/hubs/admin");
+
 app.UseStaticFiles();
 app.UseAntiforgery();
 
-app.UseOutputCache();
+//app.UseOutputCache();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();

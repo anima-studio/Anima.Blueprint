@@ -1,0 +1,315 @@
+@page "/"
+@using Anima.Blueprint.Web.Models
+@inject IRemoteAccessTransport Transport
+@implements IDisposable
+
+<PageTitle>Remote Access Dashboard</PageTitle>
+
+<div class="container">
+    <header>
+        <h1>Remote Access Control Panel</h1>
+        <span class="badge @GetStateBadgeClass()">@Transport.State</span>
+    </header>
+
+    @if (_loading)
+    {
+        <div class="loading">Connecting...</div>
+    }
+    else if (_error != null)
+    {
+        <div class="error">
+            <p>@_error</p>
+            <button @onclick="Initialize">Retry</button>
+        </div>
+    }
+    else
+    {
+        <section class="agents">
+            <h2>Connected Agents (@_agents.Count)</h2>
+            <div class="grid">
+                @foreach (var agent in _agents)
+                {
+                    <div class="card @(_selectedAgent == agent.AgentId ? "selected" : "")"
+                         @onclick="@(() => SelectAgent(agent.AgentId))">
+                        <h3>@agent.Hostname</h3>
+                        <dl>
+                            <dt>IP:</dt>
+                            <dd>@agent.IpAddress</dd>
+                            <dt>OS:</dt>
+                            <dd>@agent.OsVersion</dd>
+                            <dt>Last Seen:</dt>
+                            <dd>@FormatTime(agent.LastSeen)</dd>
+                        </dl>
+                        <div class="actions">
+                            <button @onclick="@(() => ExecuteCommand(agent.AgentId, CommandType.Screenshot))"
+                                    @onclick:stopPropagation>
+                                Screenshot
+                            </button>
+                            <button @onclick="@(() => ExecuteCommand(agent.AgentId, CommandType.Shell))"
+                                    @onclick:stopPropagation>
+                                Shell
+                            </button>
+                            <button @onclick="@(() => ExecuteCommand(agent.AgentId, CommandType.ProcessList))"
+                                    @onclick:stopPropagation>
+                                Processes
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+
+        @if (_response != null)
+        {
+            <section class="result">
+                <h2>Command Result: @_response.AgentId</h2>
+                <button class="close" @onclick="ClearResult">×</button>
+
+                @if (_response.Success)
+                {
+                    @if (_response.BinaryData != null)
+                    {
+                        <img src="data:image/png;base64,@Convert.ToBase64String(_response.BinaryData)" alt="Screenshot" />
+                    }
+                    else if (_response.TextData != null)
+                    {
+                        <pre>@_response.TextData</pre>
+                    }
+                }
+                else
+                {
+                    <div class="error">@_response.Error</div>
+                }
+            </section>
+        }
+    }
+</div>
+
+<style>
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    h1 {
+        margin: 0;
+    }
+
+    .badge {
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+    }
+
+        .badge.connected {
+            background: #4caf50;
+            color: white;
+        }
+
+        .badge.connecting {
+            background: #ff9800;
+            color: white;
+        }
+
+        .badge.disconnected {
+            background: #f44336;
+            color: white;
+        }
+
+        .badge.failed {
+            background: #d32f2f;
+            color: white;
+        }
+
+    .loading, .error {
+        text-align: center;
+        padding: 40px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 20px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+        .card:hover {
+            border-color: #2196f3;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .card.selected {
+            border-color: #2196f3;
+            background: #e3f2fd;
+        }
+
+        .card h3 {
+            margin: 0 0 15px 0;
+        }
+
+        .card dl {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 8px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        .card dt {
+            font-weight: 600;
+        }
+
+        .card dd {
+            margin: 0;
+            color: #666;
+        }
+
+    .actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 15px;
+    }
+
+        .actions button {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #2196f3;
+            background: white;
+            color: #2196f3;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            .actions button:hover {
+                background: #2196f3;
+                color: white;
+            }
+
+    .result {
+        margin-top: 30px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 20px;
+        position: relative;
+    }
+
+        .result .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: none;
+            background: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .result pre {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        .result img {
+            max-width: 100%;
+            border-radius: 4px;
+        }
+</style>
+
+@code {
+    private List<AgentInfo> _agents = new();
+    private string? _selectedAgent;
+    private CommandResponse? _response;
+    private bool _loading = true;
+    private string? _error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Transport.AgentConnected += OnAgentConnected;
+        Transport.AgentDisconnected += OnAgentDisconnected;
+        await Initialize();
+    }
+
+    private async Task Initialize()
+    {
+        _loading = true;
+        _error = null;
+
+        var connectResult = await Transport.ConnectAsync();
+        if (connectResult.IsFailure)
+        {
+            _error = connectResult.Error?.Message;
+            _loading = false;
+            return;
+        }
+
+        var agentsResult = await Transport.GetAgentsAsync();
+        if (agentsResult.IsSuccess)
+        {
+            _agents = agentsResult.Value.ToList();
+        }
+
+        _loading = false;
+    }
+
+    private void SelectAgent(string agentId)
+    {
+        _selectedAgent = agentId;
+        _response = null;
+    }
+
+    private async Task ExecuteCommand(string agentId, CommandType type)
+    {
+        _selectedAgent = agentId;
+        var command = new AgentCommand(Guid.NewGuid().ToString(), type);
+        var result = await Transport.SendCommandAsync(agentId, command);
+
+        if (result.IsSuccess)
+        {
+            _response = result.Value;
+        }
+    }
+
+    private void ClearResult() => _response = null;
+
+    private string GetStateBadgeClass() => Transport.State.ToString().ToLower();
+
+    private string FormatTime(DateTimeOffset time)
+    {
+        var elapsed = DateTimeOffset.UtcNow - time;
+        return elapsed.TotalSeconds < 60 ? $"{(int)elapsed.TotalSeconds}s" : $"{(int)elapsed.TotalMinutes}m";
+    }
+
+    private void OnAgentConnected(object? sender, AgentInfo agent)
+    {
+        _agents.Add(agent);
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void OnAgentDisconnected(object? sender, string agentId)
+    {
+        _agents.RemoveAll(a => a.AgentId == agentId);
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        Transport.AgentConnected -= OnAgentConnected;
+        Transport.AgentDisconnected -= OnAgentDisconnected;
+    }
+}
