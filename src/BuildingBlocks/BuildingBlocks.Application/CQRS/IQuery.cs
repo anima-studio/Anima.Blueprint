@@ -1,6 +1,3 @@
 namespace Anima.Blueprint.BuildingBlocks.Application.CQRS;
 
-internal interface IQuery
-{
-
-}
+public interface IQuery<out TResult> { }

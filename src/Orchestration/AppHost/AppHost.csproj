@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Microservices\Catalog\Catalog.API\Catalog.API.csproj" />
+    <ProjectReference Include="..\..\Microservices\Gmail.API\Gmail.API.csproj" />
+    <ProjectReference Include="..\..\Microservices\Notifications\Notifications.API\Notifications.API.csproj" />
     <ProjectReference Include="..\..\Web\Web.csproj" />
   </ItemGroup>
 

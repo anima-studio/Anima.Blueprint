@@ -1,6 +1,9 @@
+using System.Threading;
+using System.Threading.Tasks;
+
 namespace Anima.Blueprint.BuildingBlocks.Application.CQRS;
 
-internal interface IQueryBus
+public interface IQueryBus
 {
-
+    Task<TResult> Send<TResult>(IQuery<TResult> query, CancellationToken ct = default);
 }

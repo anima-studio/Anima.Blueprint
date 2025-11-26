@@ -1,6 +1,9 @@
+using System;
+
 namespace Anima.Blueprint.BuildingBlocks.Application.Events;
 
-internal interface IIntegrationEvent
+public interface IIntegrationEvent
 {
-
+    Guid Id { get; }
+    DateTime OccurredAt { get; }
 }

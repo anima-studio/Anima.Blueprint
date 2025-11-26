@@ -1,6 +1,9 @@
+using System.Threading;
+using System.Threading.Tasks;
+
 namespace Anima.Blueprint.BuildingBlocks.Application.Events;
 
-internal interface IIntegrationEventHandler
+public interface IIntegrationEventHandler<in TEvent> where TEvent : IIntegrationEvent
 {
-
+    Task Handle(TEvent @event, CancellationToken ct);
 }

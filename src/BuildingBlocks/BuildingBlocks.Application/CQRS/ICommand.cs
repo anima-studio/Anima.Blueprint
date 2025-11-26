@@ -1,6 +1,5 @@
 namespace Anima.Blueprint.BuildingBlocks.Application.CQRS;
 
-internal interface ICommand
-{
+public interface ICommand { }
 
-}
+public interface ICommand<out TResult> : ICommand { }
