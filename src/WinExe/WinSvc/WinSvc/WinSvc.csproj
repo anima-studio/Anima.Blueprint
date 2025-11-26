@@ -48,7 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\GmailConfig.cs" />
+    <Compile Include="Core\ILogger.cs" />
+    <Compile Include="Core\LogEntry.cs" />
+    <Compile Include="Core\LogLevel.cs" />
+    <Compile Include="Core\ServiceLogger.cs" />
+    <Compile Include="Core\StateManager.cs" />
     <Compile Include="ImapGmailClient.cs" />
+    <Compile Include="Imap\ImapClient.cs" />
+    <Compile Include="Imap\ImapResponse.cs" />
     <Compile Include="ServiceImpl.cs" />
     <Compile Include="Service1.cs">
       <SubType>Component</SubType>
@@ -58,10 +66,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\GmailReportService.cs" />
+    <Compile Include="Services\SystemInfoCollector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Secrets.config" />
+    <None Include="Secrets.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

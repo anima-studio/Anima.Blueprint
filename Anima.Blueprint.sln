@@ -54,11 +54,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ArchitectureTests", "Archit
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
 		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
 		Directory.Build.props = Directory.Build.props
 		Directory.Packages.props = Directory.Packages.props
 		global.json = global.json
 		README.md = README.md
+		settings.VisualStudio.json = settings.VisualStudio.json
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Domain", "src\BuildingBlocks\BuildingBlocks.Domain\BuildingBlocks.Domain.csproj", "{02C70B9C-3E73-4EEC-B877-757CE00128FC}"
@@ -80,8 +84,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DomainDrivenDesign", "Domai
 	ProjectSection(SolutionItems) = preProject
 		docs\DomainDrivenDesign\AggregateRoot.md = docs\DomainDrivenDesign\AggregateRoot.md
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "S", "S", "{9B7506DF-897C-48FF-8A3A-CAF6C8216355}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinSvc", "WinSvc", "{A24FE35D-8CDF-4CDF-AC81-EF3BFC79CFF7}"
 EndProject
@@ -190,7 +192,6 @@ Global
 		{838D40A8-7464-4557-9F46-6F7B6875179C} = {3E7292B7-391C-4517-AA3A-C234E1D04C67}
 		{CBFC0D9C-E79F-4B38-AD82-51F257D7CA64} = {EA1DAE95-0EB5-4BB0-AF89-5BA7663D9DA3}
 		{ACFD8820-65A4-4720-A8DB-CB7F00250C96} = {3898CD42-E8B5-4F88-8BD7-DC0FC8B27011}
-		{9B7506DF-897C-48FF-8A3A-CAF6C8216355} = {9A523127-44F9-4A8D-9807-F18530625291}
 		{A24FE35D-8CDF-4CDF-AC81-EF3BFC79CFF7} = {1C79E314-7870-4270-97F6-9414F9BB705B}
 		{FB3B0A39-3A4D-4E41-B5DE-F1967A313E7B} = {1C79E314-7870-4270-97F6-9414F9BB705B}
 		{1C79E314-7870-4270-97F6-9414F9BB705B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}

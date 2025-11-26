@@ -17,13 +17,13 @@ internal static class Program
         //ServiceBase.Run(ServicesToRun);
 
 #if DEBUG
-        var service = new Service1();
-        service.DebugStart(args);
-        Console.WriteLine("Press ENTER to stop...");
+        var svc = new Service1();
+        svc.DebugStart(args);
+        Console.WriteLine("Running... Press ENTER to stop.");
         Console.ReadLine();
-        service.DebugStop();
+        svc.DebugStop();
 #else
-        ServiceBase.Run(new Service1());
+        ServiceBase.Run(new RemoteAccessService());
 #endif
     }
 }
