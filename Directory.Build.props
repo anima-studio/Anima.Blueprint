@@ -11,7 +11,7 @@
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
 
-    <RepositoryUrl>https://github.com/anima-studio/Anima.Blueprint</RepositoryUrl>
+    <RepositoryUrl>https://github.com/moserkristian/Moser.Archetype</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
 
     <EnableNETAnalyzers>true</EnableNETAnalyzers>

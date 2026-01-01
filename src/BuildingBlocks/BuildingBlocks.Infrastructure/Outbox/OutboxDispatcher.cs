@@ -1,4 +1,4 @@
-namespace Anima.Blueprint.BuildingBlocks.Infrastructure.Outbox;
+namespace Moser.Archetype.BuildingBlocks.Infrastructure.Outbox;
 
 internal class OutboxDispatcher
 {

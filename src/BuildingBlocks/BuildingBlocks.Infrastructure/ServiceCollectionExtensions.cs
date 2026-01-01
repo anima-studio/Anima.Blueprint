@@ -1,4 +1,4 @@
-namespace Anima.Blueprint.BuildingBlocks.Infrastructure;
+namespace Moser.Archetype.BuildingBlocks.Infrastructure;
 
 internal class ServiceCollectionExtensions
 {

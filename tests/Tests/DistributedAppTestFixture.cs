@@ -9,11 +9,11 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-using AppHost = Anima.Blueprint.AppHost;
+using AppHost = Moser.Archetype.AppHost;
 
 [assembly: CollectionBehavior(DisableTestParallelization = false)]
 
-namespace Anima.Blueprint.Tests;
+namespace Moser.Archetype.Tests;
 
 [Collection("DistributedAppTestCollection")]
 public class DistributedAppTestFixture : IAsyncLifetime

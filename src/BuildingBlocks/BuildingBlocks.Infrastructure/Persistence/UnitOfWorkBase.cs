@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 
-using Anima.Blueprint.BuildingBlocks.Application;
+using Moser.Archetype.BuildingBlocks.Application;
 
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Anima.Blueprint.BuildingBlocks.Infrastructure.Persistence;
+namespace Moser.Archetype.BuildingBlocks.Infrastructure.Persistence;
 
 public abstract class UnitOfWorkBase<TContext> : IUnitOfWork
     where TContext : DbContextBase

@@ -1,6 +1,6 @@
 using System;
 
-namespace Anima.Blueprint.Web.Models;
+namespace Moser.Archetype.Web.Models;
 
 public record AgentInfo(
     string AgentId,

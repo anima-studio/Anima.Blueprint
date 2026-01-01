@@ -1,4 +1,4 @@
-namespace Anima.Blueprint.Catalog.Infrastructure;
+namespace Moser.Archetype.Catalog.Infrastructure;
 
 public class FakeDbContext
 {

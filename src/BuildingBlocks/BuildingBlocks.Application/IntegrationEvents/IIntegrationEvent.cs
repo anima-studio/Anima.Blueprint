@@ -1,6 +1,6 @@
 using System;
 
-namespace Anima.Blueprint.BuildingBlocks.Application.Events;
+namespace Moser.Archetype.BuildingBlocks.Application.Events;
 
 public interface IIntegrationEvent
 {

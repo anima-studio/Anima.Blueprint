@@ -5,7 +5,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Anima.Blueprint.Web.Services;
+namespace Moser.Archetype.Web.Services;
 
 public class SignalingConnectionService : BackgroundService
 {

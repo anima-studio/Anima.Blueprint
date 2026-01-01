@@ -1,4 +1,4 @@
-using Anima.Blueprint.BuildingBlocks.Application.Events;
+using Moser.Archetype.BuildingBlocks.Application.Events;
 
 using Azure;
 using Azure.Messaging.EventGrid;
@@ -8,7 +8,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Anima.Blueprint.BuildingBlocks.Infrastructure.EventBus;
+namespace Moser.Archetype.BuildingBlocks.Infrastructure.EventBus;
 
 public sealed class AzureEventGridEventBus : IEventBus
 {

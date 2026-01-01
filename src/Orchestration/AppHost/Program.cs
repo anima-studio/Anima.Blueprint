@@ -1,9 +1,9 @@
-using Anima.Blueprint.Catalog.Infrastructure;
+using Moser.Archetype.Catalog.Infrastructure;
 
 using Aspire.Hosting;
 using Aspire.Hosting.ApplicationModel;
 
-namespace Anima.Blueprint.AppHost;
+namespace Moser.Archetype.AppHost;
 
 public static class Program
 {

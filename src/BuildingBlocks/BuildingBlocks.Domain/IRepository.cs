@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Anima.Blueprint.BuildingBlocks.Domain;
+namespace Moser.Archetype.BuildingBlocks.Domain;
 
 internal interface IRepository<TAggregate, TId>
     where TAggregate : IAggregateRoot

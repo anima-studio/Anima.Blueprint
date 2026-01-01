@@ -1,12 +1,12 @@
-using Anima.Blueprint.BuildingBlocks.Domain;
-using Anima.Blueprint.Web.Models;
+using Moser.Archetype.BuildingBlocks.Domain;
+using Moser.Archetype.Web.Models;
 
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Anima.Blueprint.Web.Abstractions;
+namespace Moser.Archetype.Web.Abstractions;
 
 public interface IRemoteAccessTransport
 {

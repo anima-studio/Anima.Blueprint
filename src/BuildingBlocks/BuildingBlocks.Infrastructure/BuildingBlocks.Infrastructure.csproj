@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>Anima.Blueprint.BuildingBlocks.Infrastructure</RootNamespace>
+    <RootNamespace>Moser.Archetype.BuildingBlocks.Infrastructure</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-using Anima.Blueprint.Notifications.API.Features.Agents;
+using Moser.Archetype.Notifications.API.Features.Agents;
 
 using Azure.Storage.Queues;
 
@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.SignalR;
 
 using System.Text.Json;
 
-namespace Anima.Blueprint.Notifications.API.Consumers;
+namespace Moser.Archetype.Notifications.API.Consumers;
 
 public class QueueConsumer : BackgroundService
 {

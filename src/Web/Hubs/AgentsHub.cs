@@ -5,7 +5,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Anima.Blueprint.Web.Hubs;
+namespace Moser.Archetype.Web.Hubs;
 
 public class AgentsHub : Hub
 {

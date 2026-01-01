@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace Anima.Blueprint.Extensions;
+namespace Moser.Archetype.Extensions;
 
 public static class WebApplicationExtensions
 {

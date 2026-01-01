@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.SignalR;
 
-namespace Anima.Blueprint.Notifications.API.Features.Agents;
+namespace Moser.Archetype.Notifications.API.Features.Agents;
 
 public class AgentsHub : Hub
 {

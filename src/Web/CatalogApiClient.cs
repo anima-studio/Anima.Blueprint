@@ -4,7 +4,7 @@ using System.Net.Http.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Anima.Blueprint.Web;
+namespace Moser.Archetype.Web;
 
 public class CatalogApiClient(HttpClient httpClient)
 {

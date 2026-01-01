@@ -1,4 +1,4 @@
-# Anima.Blueprint
+# Moser.Archetype
 
 This repository serves as a Proof-of-Concept (PoC) demonstration project, showcasing practical implementation across various technologies and software architecture patterns.
 

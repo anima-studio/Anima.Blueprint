@@ -1,4 +1,4 @@
-namespace Anima.Blueprint.Catalog.Application.Queries;
+namespace Moser.Archetype.Catalog.Application.Queries;
 
 internal class GetProducts
 {

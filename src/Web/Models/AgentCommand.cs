@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Anima.Blueprint.Web.Models;
+namespace Moser.Archetype.Web.Models;
 
 public record AgentCommand(
     string CommandId,

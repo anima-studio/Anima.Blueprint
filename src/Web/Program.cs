@@ -1,8 +1,8 @@
-using Anima.Blueprint.Components;
-using Anima.Blueprint.Web;
-using Anima.Blueprint.Web.Abstractions;
-using Anima.Blueprint.Web.Hubs;
-using Anima.Blueprint.Web.Services;
+using Moser.Archetype.Components;
+using Moser.Archetype.Web;
+using Moser.Archetype.Web.Abstractions;
+using Moser.Archetype.Web.Hubs;
+using Moser.Archetype.Web.Services;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;

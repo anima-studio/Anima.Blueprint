@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Anima.Blueprint.Messaging;
+namespace Moser.Archetype.Messaging;
 
 internal class AzureQueuePublisher
 {

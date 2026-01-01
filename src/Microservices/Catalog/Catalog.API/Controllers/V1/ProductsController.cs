@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Anima.Blueprint.Catalog.API.Controllers.V1;
+namespace Moser.Archetype.Catalog.API.Controllers.V1;
 
 [ApiController]
 [Route("api/v1/[controller]")]

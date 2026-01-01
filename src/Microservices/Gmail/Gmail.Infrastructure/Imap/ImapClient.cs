@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Anima.Blueprint.Imap;
+namespace Moser.Archetype.Imap;
 
 internal class ImapClient
 {

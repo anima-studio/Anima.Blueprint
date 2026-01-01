@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Anima.Blueprint.BuildingBlocks.Application;
+namespace Moser.Archetype.BuildingBlocks.Application;
 
 public interface IUnitOfWork
 {

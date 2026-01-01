@@ -1,4 +1,4 @@
-namespace Anima.Blueprint.Web.Models;
+namespace Moser.Archetype.Web.Models;
 
 public record CommandResponse(
     string CommandId,

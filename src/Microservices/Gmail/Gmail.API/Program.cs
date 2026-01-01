@@ -1,4 +1,4 @@
-using Anima.Blueprint.Extensions;
+using Moser.Archetype.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

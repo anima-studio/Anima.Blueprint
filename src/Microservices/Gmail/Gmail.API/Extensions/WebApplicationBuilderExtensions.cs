@@ -1,8 +1,8 @@
-using Anima.Blueprint.BuildingBlocks.Application;
+using Moser.Archetype.BuildingBlocks.Application;
 
 using System.Reflection;
 
-namespace Anima.Blueprint.Gmail.API.Extensions;
+namespace Moser.Archetype.Gmail.API.Extensions;
 
 public static class WebApplicationBuilderExtensions
 {

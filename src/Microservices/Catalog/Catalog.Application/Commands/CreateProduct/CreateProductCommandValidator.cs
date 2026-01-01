@@ -1,4 +1,4 @@
-namespace Anima.Blueprint.Catalog.Application.Commands.CreateProduct;
+namespace Moser.Archetype.Catalog.Application.Commands.CreateProduct;
 
 internal class CreateProductCommandValidator
 {

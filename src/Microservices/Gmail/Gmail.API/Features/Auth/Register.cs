@@ -1,4 +1,4 @@
-namespace Anima.Blueprint.Gmail.Domain.Features.Auth;
+namespace Moser.Archetype.Gmail.Domain.Features.Auth;
 
 public static class Register
 {

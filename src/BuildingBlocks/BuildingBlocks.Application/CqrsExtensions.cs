@@ -1,11 +1,11 @@
-using Anima.Blueprint.BuildingBlocks.Application.CQRS;
+using Moser.Archetype.BuildingBlocks.Application.CQRS;
 
 using Microsoft.Extensions.DependencyInjection;
 
 using System.Linq;
 using System.Reflection;
 
-namespace Anima.Blueprint.BuildingBlocks.Application;
+namespace Moser.Archetype.BuildingBlocks.Application;
 
 public static class CqrsExtensions
 {

@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Anima.Blueprint.Tests;
+namespace Moser.Archetype.Tests;
 
 public class WebTests
 {/*

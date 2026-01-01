@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace Anima.Blueprint.Tests;
+namespace Moser.Archetype.Tests;
 
 internal static class ResourceCollectionExtensions
 {

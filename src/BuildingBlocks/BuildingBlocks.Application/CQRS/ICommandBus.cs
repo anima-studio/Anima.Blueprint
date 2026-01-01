@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Anima.Blueprint.BuildingBlocks.Application.CQRS;
+namespace Moser.Archetype.BuildingBlocks.Application.CQRS;
 
 public interface ICommandBus
 {

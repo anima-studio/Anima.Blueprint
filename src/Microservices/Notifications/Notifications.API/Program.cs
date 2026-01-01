@@ -1,5 +1,5 @@
-using Anima.Blueprint.Notifications.API.Consumers;
-using Anima.Blueprint.Notifications.API.Features.Agents;
+using Moser.Archetype.Notifications.API.Consumers;
+using Moser.Archetype.Notifications.API.Features.Agents;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,4 +1,4 @@
-namespace Anima.Blueprint.BuildingBlocks.Domain;
+namespace Moser.Archetype.BuildingBlocks.Domain;
 
 public class Result
 {

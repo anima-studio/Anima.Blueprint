@@ -1,4 +1,4 @@
-namespace Anima.Blueprint.Gmail.Domain.Features.Agents;
+namespace Moser.Archetype.Gmail.Domain.Features.Agents;
 
 public static class GetAgents
 {

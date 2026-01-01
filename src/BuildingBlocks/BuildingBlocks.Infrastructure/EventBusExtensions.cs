@@ -1,5 +1,5 @@
-using Anima.Blueprint.BuildingBlocks.Application.Events;
-using Anima.Blueprint.BuildingBlocks.Infrastructure.EventBus;
+using Moser.Archetype.BuildingBlocks.Application.Events;
+using Moser.Archetype.BuildingBlocks.Infrastructure.EventBus;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using System.Linq;
 using System.Reflection;
 
-namespace Anima.Blueprint.BuildingBlocks.Infrastructure;
+namespace Moser.Archetype.BuildingBlocks.Infrastructure;
 
 public static class EventBusExtensions
 {

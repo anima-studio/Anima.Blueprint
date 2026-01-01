@@ -1,4 +1,4 @@
-namespace Anima.Blueprint.Notifications.API.Extensions;
+namespace Moser.Archetype.Notifications.API.Extensions;
 
 public class WebApplicationBuilderExtensions
 {

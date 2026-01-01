@@ -1,4 +1,4 @@
-namespace Anima.Blueprint.BuildingBlocks.Application.Behaviors;
+namespace Moser.Archetype.BuildingBlocks.Application.Behaviors;
 
 internal class ValidationBehavior
 {

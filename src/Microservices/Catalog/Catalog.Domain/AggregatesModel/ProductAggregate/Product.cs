@@ -1,4 +1,4 @@
-namespace Anima.Blueprint.Catalog.Domain.AggregatesModel.ProductAggregate;
+namespace Moser.Archetype.Catalog.Domain.AggregatesModel.ProductAggregate;
 
 public class Product
 {

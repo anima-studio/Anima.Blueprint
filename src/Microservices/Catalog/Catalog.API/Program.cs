@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 
-namespace Anima.Blueprint.Catalog.API;
+namespace Moser.Archetype.Catalog.API;
 
 internal class Program
 {

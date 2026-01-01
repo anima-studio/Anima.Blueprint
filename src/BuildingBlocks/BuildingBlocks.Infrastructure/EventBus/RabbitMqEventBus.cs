@@ -1,4 +1,4 @@
-namespace Anima.Blueprint.BuildingBlocks.Infrastructure.EventBus;
+namespace Moser.Archetype.BuildingBlocks.Infrastructure.EventBus;
 
 internal class RabbitMqEventBus
 {

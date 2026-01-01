@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Anima.Blueprint.BuildingBlocks.Application.Events;
+namespace Moser.Archetype.BuildingBlocks.Application.Events;
 
 public interface IIntegrationEventHandler<in TEvent> where TEvent : IIntegrationEvent
 {
