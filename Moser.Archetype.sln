@@ -12,12 +12,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "tests\Tests\Tests.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{3898CD42-E8B5-4F88-8BD7-DC0FC8B27011}"
-	ProjectSection(SolutionItems) = preProject
-		docs\EventTimestampGuidlinesISO20022.md = docs\EventTimestampGuidlinesISO20022.md
-		docs\TechnologiesToImplement.md = docs\TechnologiesToImplement.md
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DBF258AA-21CA-4546-97F3-1466A61A018A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{5AAC7D1F-A52D-4F59-AE47-06D6080C1CCE}"
@@ -78,11 +72,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{CBFC0D9C-E79F-4B38-AD82-51F257D7CA64}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\build-test-deploy.yml = .github\workflows\build-test-deploy.yml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DomainDrivenDesign", "DomainDrivenDesign", "{ACFD8820-65A4-4720-A8DB-CB7F00250C96}"
-	ProjectSection(SolutionItems) = preProject
-		docs\DomainDrivenDesign\AggregateRoot.md = docs\DomainDrivenDesign\AggregateRoot.md
 	EndProjectSection
 EndProject
 Global
@@ -173,7 +162,6 @@ Global
 		{F1AD29CC-AE95-480E-A24A-AA40FBB8A2C5} = {3E7292B7-391C-4517-AA3A-C234E1D04C67}
 		{838D40A8-7464-4557-9F46-6F7B6875179C} = {3E7292B7-391C-4517-AA3A-C234E1D04C67}
 		{CBFC0D9C-E79F-4B38-AD82-51F257D7CA64} = {EA1DAE95-0EB5-4BB0-AF89-5BA7663D9DA3}
-		{ACFD8820-65A4-4720-A8DB-CB7F00250C96} = {3898CD42-E8B5-4F88-8BD7-DC0FC8B27011}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C20D381E-CD9D-422D-8C47-5865681B264D}

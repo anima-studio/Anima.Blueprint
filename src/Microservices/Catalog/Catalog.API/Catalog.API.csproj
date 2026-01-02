@@ -17,11 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="GraphQL\" />
-    <Folder Include="gRPC\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Orchestration\ServiceDefaults\ServiceDefaults.csproj" />
   </ItemGroup>
 

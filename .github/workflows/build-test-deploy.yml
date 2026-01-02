@@ -5,7 +5,7 @@ on:
     branches: [main, develop]
 
 env:
-  IMAGE_PREFIX: ${{ github.repository_owner }}/anima-blueprint
+  IMAGE_PREFIX: ${{ github.repository_owner }}/moser-archetype
 
 jobs:
   build-and-test:
